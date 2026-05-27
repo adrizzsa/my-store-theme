@@ -1,0 +1,110 @@
+<section class="nrp-htu">
+  <div class="nrp-htu__container">
+    <div class="nrp-htu__header">
+      <h2 class="nrp-htu__title">{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="nrp-htu__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="nrp-steps">
+      {% for block in section.blocks %}
+        <div class="nrp-step" {{ block.shopify_attributes }}>
+          <div class="nrp-step__num">{{ forloop.index }}</div>
+          {% if block.settings.icon != blank %}
+            <div style="font-size:2rem; margin-bottom:10px;">{{ block.settings.icon }}</div>
+          {% endif %}
+          <div class="nrp-step__title">{{ block.settings.title }}</div>
+          <div class="nrp-step__desc">{{ block.settings.description }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NRP How To Use",
+  "tag": "div",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "How To Use NeckRelief Pro"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Get relief in just 4 easy steps"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Step",
+      "type": "step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon (optional)",
+          "default": "📦"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step title",
+          "default": "Unbox & Prepare"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step description",
+          "default": "Remove the NeckRelief Pro from its protective packaging and place it on a flat, firm surface."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "NRP How To Use",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "icon": "🛋️",
+            "title": "Find a Flat Surface",
+            "description": "Place the NeckRelief Pro on a flat, firm surface such as a yoga mat, carpet, or bed."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "😌",
+            "title": "Position Your Neck",
+            "description": "Gently lower the back of your neck onto the device. Allow gravity to do the work — no forcing required."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "⏱️",
+            "title": "Relax for 10–15 Min",
+            "description": "Stay relaxed and breathe deeply. Use for 10–15 minutes per session for maximum benefit."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "✅",
+            "title": "Use Daily for Results",
+            "description": "Use once or twice daily for at least 2 weeks. Most users see dramatic improvement within the first few days."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
